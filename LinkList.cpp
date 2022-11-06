@@ -2,8 +2,6 @@
 // LinkList
 // language: C++
 // CSer: ljq_truth
- 
-
 
 # include<iostream>
 # include<cstdlib>
@@ -13,30 +11,30 @@ using namespace std;
 
 #define MAXSIZE 1000
 
-typedef int Elemtype;	// ÌáÉı´úÂë½¡×³ĞÔ 
+typedef int Elemtype;	// æå‡ä»£ç å¥å£®æ€§ 
 
-/****** ¶¨Òå½á¹¹Ìå ******/ 
-typedef struct LNode{		// µ¥ÏòÁ´±í
+/****** å®šä¹‰ç»“æ„ä½“ ******/ 
+typedef struct LNode{		// å•å‘é“¾è¡¨
 	Elemtype data;
 	struct LNode *next;
 }LNode, *LinkList;
 
-typedef struct DuLNode {  // Ë«ÏòÁ´±í
+typedef struct DuLNode {  // åŒå‘é“¾è¡¨
 	Elemtype data;
 	struct DuLNode* Prior;
 	struct DuLNode* next;
 }DuLNode, *DuLinkList;
 
-/************************* º¯Êı ***************************/ 
+/************************* å‡½æ•° ***************************/ 
 
-void Init( LinkList &L );  // ³õÊ¼»¯ 
-void GetElem( LinkList L, int i, Elemtype &e );  // È¡Öµ 
-void CreateList_H(LinkList &L, int n);  // ´´½¨Á´±í £¨Ç°²å£©
-void CreateList_R(LinkList &L, int n);  // ´´½¨Á´±í £¨ºó²å£©
-LNode *LocateElem(LinkList L, Elemtype e);  // ²éÕÒ£¬·µ»ØµØÖ·
-int LocateElem_int(LinkList L, Elemtype e);  // ²éÕÒ£¬·µ»ØÎ»ÖÃ 
-void print(LinkList &L);	// ´òÓ¡Á´±í 
-void ListInsert(LinkList &L, int i, Elemtype e);  // ²åÈë 
+void Init( LinkList &L );  // åˆå§‹åŒ– 
+void GetElem( LinkList L, int i, Elemtype &e );  // å–å€¼ 
+void CreateList_H(LinkList &L, int n);  // åˆ›å»ºé“¾è¡¨ ï¼ˆå‰æ’ï¼‰
+void CreateList_R(LinkList &L, int n);  // åˆ›å»ºé“¾è¡¨ ï¼ˆåæ’ï¼‰
+LNode *LocateElem(LinkList L, Elemtype e);  // æŸ¥æ‰¾ï¼Œè¿”å›åœ°å€
+int LocateElem_int(LinkList L, Elemtype e);  // æŸ¥æ‰¾ï¼Œè¿”å›ä½ç½® 
+void print(LinkList &L);	// æ‰“å°é“¾è¡¨ 
+void ListInsert(LinkList &L, int i, Elemtype e);  // æ’å…¥ 
 void ListDelete(LinkList& L, int i);
 
 /**********************************************************/ 
@@ -46,35 +44,35 @@ int main(){
 
 	Init(L);
 
-	//CreateList_H(H, 5);   // Ç°²å·¨ 
-	CreateList_R(L,5); 	   // ºó²å·¨ 
+	//CreateList_H(H, 5);   // å‰æ’æ³• 
+	CreateList_R(L,5); 	   // åæ’æ³• 
 	
 	print(L);
 	//print(LH);
 	
 	Elemtype e = 4;
-	cout << "²éÕÒLÀïµÄµÚ3¸öÔªËØ:" << LocateElem(L, e) << " |Î»ÖÃÊÇ£º" << LocateElem_int(L, e);// ²éÕÒ 
+	cout << "æŸ¥æ‰¾Lé‡Œçš„ç¬¬3ä¸ªå…ƒç´ :" << LocateElem(L, e) << " |ä½ç½®æ˜¯ï¼š" << LocateElem_int(L, e);// æŸ¥æ‰¾ 
 	
 	int i = 2;
 	ListInsert(L, i, e); 
-	cout << ("\nInserted£º");
+	cout << ("\nInsertedï¼š");
 	print( L);
 
 	ListDelete(L, 3);
-	cout << ("\nDeleted£º");
+	cout << ("\nDeletedï¼š");
 	print(L);
 
 	return 0;
 }
 
-/****** ³õÊ¼»¯ ******/ 
-void Init( LinkList &L ){  // Á´±í³õÊ¼»¯ 
+/****** åˆå§‹åŒ– ******/ 
+void Init( LinkList &L ){  // é“¾è¡¨åˆå§‹åŒ– 
 	L = new LNode;
 	L -> next = NULL;
 }
 
-/****** È¡Öµ ******/ 
-void GetElem( LinkList L, int i, Elemtype &e ){  // È¡Öµ 
+/****** å–å€¼ ******/ 
+void GetElem( LinkList L, int i, Elemtype &e ){  // å–å€¼ 
 	LNode *p = L->next;
 	int j = 1;
 	while(p && j < i){
@@ -85,7 +83,7 @@ void GetElem( LinkList L, int i, Elemtype &e ){  // È¡Öµ
 	e = p -> data;
 } 
 
-/****** ´´½¨Á´±í: Ç°²å·¨ ******/ 
+/****** åˆ›å»ºé“¾è¡¨: å‰æ’æ³• ******/ 
 void CreateList_H(LinkList &L, int n){	
 	L = new LNode;
 	L -> next = NULL;
@@ -98,7 +96,7 @@ void CreateList_H(LinkList &L, int n){
 	}
 }
 
-/****** ´´½¨Á´±í: ºó²å·¨ ******/ 
+/****** åˆ›å»ºé“¾è¡¨: åæ’æ³• ******/ 
 void CreateList_R(LinkList &L, int n) {  
 	L = new LNode;
 	L -> next = NULL;
@@ -113,7 +111,7 @@ void CreateList_R(LinkList &L, int n) {
 	}
 }
 
-/****** ±éÀú´òÓ¡Á´±í ******/ 
+/****** éå†æ‰“å°é“¾è¡¨ ******/ 
 void print(LinkList &L){  
 	LNode *p = L->next;
 	while( p ){
@@ -123,7 +121,7 @@ void print(LinkList &L){
 	cout << "\n" << endl;
 }
 
-/****** ²éÕÒ£¬·µ»ØµØÖ· ******/ 
+/****** æŸ¥æ‰¾ï¼Œè¿”å›åœ°å€ ******/ 
 LNode *LocateElem(LinkList L, Elemtype e){  
 	LNode *p = L -> next;
 	while(p && p -> data != e)
@@ -131,9 +129,9 @@ LNode *LocateElem(LinkList L, Elemtype e){
 	return p;
 } 
 
-/****** ²éÕÒ£¬·µ»ØÎ»ÖÃ ******/ 
+/****** æŸ¥æ‰¾ï¼Œè¿”å›ä½ç½® ******/ 
 int LocateElem_int(LinkList L, Elemtype e){
-	int num = 0;   // ´Ó0¿ªÊ¼ 
+	int num = 0;   // ä»0å¼€å§‹ 
 	LNode *p = L -> next;
 	while(p && p -> data != e){ 
 		p = p -> next;
@@ -142,7 +140,7 @@ int LocateElem_int(LinkList L, Elemtype e){
 	return num;
 } 
 
-/****** ²åÈë ******/
+/****** æ’å…¥ ******/
 void ListInsert(LinkList &L, int i, Elemtype e){
 	LNode *p = L;
 	int j = 0;
@@ -173,7 +171,7 @@ void ListInsert_DuL(DuLinkList& L, int i, Elemtype e) {
 }
 */
 
-/****** É¾³ı ******/
+/****** åˆ é™¤ ******/
 void ListDelete(LinkList& L, int i){
 	LNode* p;
 	int j = 0;
@@ -201,9 +199,9 @@ void ListDelete_DuL{
 }
 */
 /*****************************************************/
-/*<²¹³ä>[ Ñ­»·Á´±í ]
-* ÅĞ±ğÌõ¼şÎª p! = L »ò p -> next != L
-* ºÏ²¢Ñ­»·Á´±í  p = B -> next ->next; 
+/*<è¡¥å……>[ å¾ªç¯é“¾è¡¨ ]
+* åˆ¤åˆ«æ¡ä»¶ä¸º p! = L æˆ– p -> next != L
+* åˆå¹¶å¾ªç¯é“¾è¡¨  p = B -> next ->next; 
 *                         B -> next = A -> next;
 *                         A -> next = p;
 /*****************************************************/
